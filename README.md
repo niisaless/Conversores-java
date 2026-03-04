@@ -1,6 +1,6 @@
-# Sistema de Conversores Java
+## Sistema de Conversores Java
 
-Projeto desenvolvido em Java utilizando Programação Orientada a Objetos.
+Projeto desenvolvido em Java utilizando Programação Orientada a Objetos (POO).
 
 ## Objetivo
 Aplicação em console que realiza conversões de:
@@ -16,4 +16,6 @@ Aplicação em console que realiza conversões de:
 - Estruturas de decisão (if, switch)
 - Laço de repetição (do-while)
 
-## Autora: Nicole Sales
+## Autora: 
+Nicole Sales 
+- Realizado na: FITO
