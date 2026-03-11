@@ -1,67 +1,52 @@
-import java.time.LocalDateTime;
-
 public class Conversor {
-
     private double valorEntrada;
     private double valorSaida;
     private String unidadeOrigem;
     private String unidadeDestino;
-    private LocalDateTime dataHora;
 
-    public Conversor() {
-    }
-
-    public Conversor(double valorEntrada, String unidadeOrigem, String unidadeDestino) {
-        this.valorEntrada = valorEntrada;
-        this.unidadeOrigem = unidadeOrigem;
-        this.unidadeDestino = unidadeDestino;
-        this.dataHora = LocalDateTime.now();
+    public Conversor(double entrada, String origem, String destino) {
+        valorEntrada = entrada;
+        unidadeOrigem = origem;
+        unidadeDestino = destino;
     }
 
     public double getValorEntrada() {
         return valorEntrada;
     }
 
-    public void setValorEntrada(double valorEntrada) {
-        this.valorEntrada = valorEntrada;
+    public void setValorEntrada(double entrada) {
+        valorEntrada = entrada;
     }
 
     public double getValorSaida() {
         return valorSaida;
     }
 
-    public void setValorSaida(double valorSaida) {
-        this.valorSaida = valorSaida;
+    public void setValorSaida(double saida) {
+        valorSaida = saida;
     }
 
     public String getUnidadeOrigem() {
-        return unidadeOrigem;
+    return unidadeOrigem;
     }
 
-    public void setUnidadeOrigem(String unidadeOrigem) {
-        this.unidadeOrigem = unidadeOrigem;
+    public void setUnidadeOrigem(String origem) {
+        unidadeOrigem = origem;
     }
 
     public String getUnidadeDestino() {
         return unidadeDestino;
     }
 
-    public void setUnidadeDestino(String unidadeDestino) {
-        this.unidadeDestino = unidadeDestino;
-    }
-
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public void setUnidadeDestino(String destino) {
+        unidadeDestino = destino;
     }
 
     public void calcularConversao() {
-
     }
 
-    @Override
     public String toString() {
         return "Entrada: " + valorEntrada + " " + unidadeOrigem +
-               " Saída: " + valorSaida + " " + unidadeDestino +
-               " Data: " + dataHora;
+               " | Saída: " + valorSaida + " " + unidadeDestino;
     }
 }

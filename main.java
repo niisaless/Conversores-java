@@ -5,151 +5,88 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         Scanner s = new Scanner(System.in);
-        List<Conversor> lista = new ArrayList<>();
+        List<Conversor> listaConversoes = new ArrayList<>();
 
         int opcao;
-
         do {
-            System.out.println("\n MENU PRINCIPAL ");
-            System.out.println("1: Nova Conversão");
-            System.out.println("2: Listar Conversões");
-            System.out.println("3: Deletar Conversão");
-            System.out.println("0: Sair");
-
+            System.out.println("\nEscolha uma opção:");
+            System.out.println("1- Realizar Conversão");
+            System.out.println("2- Exibir Histórico");
+            System.out.println("3- Alterar Conversão");
+            System.out.println("4- Deletar Conversão");
+            System.out.println("0- Sair");
             opcao = s.nextInt();
 
             switch (opcao) {
-
                 case 1:
+                    System.out.println("Escolha a unidade de origem (Celsius, Fahrenheit, Kelvin, Joules, Calorias, Volts): ");
+                    String origem = s.next();
+                    System.out.println("Escolha a unidade de destino (Celsius, Fahrenheit, Kelvin, Joules, Calorias, Volts): ");
+                    String destino = s.next();
+                    System.out.println("Digite o valor de entrada: ");
+                    double valor = s.nextDouble();
 
-                    System.out.println("\nEscolha o tipo:");
-                    System.out.println("1: Conversor Térmico");
-                    System.out.println("2: Conversor Energético");
+                    Conversor conversor;
 
-                    int tipo = s.nextInt();
+                    if (origem.equals("Celsius")) {
+                        conversor = new ConversorTermico(valor, origem, destino);
 
-                    String origem = "";
-                    String destino = "";
-                    double valor;
+                    } else if (origem.equals("Fahrenheit")) {
+                        conversor = new ConversorTermico(valor, origem, destino);
 
-                    if (tipo == 1) {
-
-                        System.out.println("\n CONVERSOR TÉRMICO ");
-                        System.out.println("1: Celsius(C) -> Fahrenheit(F)");
-                        System.out.println("2: Celsius(C) -> Kelvin(K)");
-                        System.out.println("3: Fahrenheit(F) -> Celsius(C)");
-                        System.out.println("4: Kelvin(K) -> Fahrenheit(F)");
-
-                        int opcaoTermica = s.nextInt();
-
-                        System.out.println("Digite o valor:");
-                        valor = s.nextDouble();
-
-                        switch (opcaoTermica) {
-                            case 1:
-                                origem = "C";
-                                destino = "F";
-                                break;
-                            case 2:
-                                origem = "C";
-                                destino = "K";
-                                break;
-                            case 3:
-                                origem = "F";
-                                destino = "C";
-                                break;
-                            case 4:
-                                origem = "K";
-                                destino = "F";
-                                break;
-                            default:
-                                System.out.println("Opção incorreta.");
-                                continue;
-                        }
-
-                    } else if (tipo == 2) {
-
-                        System.out.println("\n CONVERSOR ENERGÉTICO ");
-                        System.out.println("1: Joules(J) -> Calorias(CAL)");
-                        System.out.println("2: Calorias(CAL) -> Joules(J)");
-                        System.out.println("3: Joules(J) -> Volts(V)");
-                        System.out.println("4: Volts(V) -> Calorias(CAL)");
-
-                        int opcaoEnergia = s.nextInt();
-
-                        System.out.println("Digite o valor:");
-                        valor = s.nextDouble();
-
-                        switch (opcaoEnergia) {
-                            case 1:
-                                origem = "J";
-                                destino = "CAL";
-                                break;
-                            case 2:
-                                origem = "CAL";
-                                destino = "J";
-                                break;
-                            case 3:
-                                origem = "J";
-                                destino = "V";
-                                break;
-                            case 4:
-                                origem = "V";
-                                destino = "CAL";
-                                break;
-                            default:
-                                System.out.println("Opção incorreta.");
-                                continue;
-                        }
+                    } else if (origem.equals("Kelvin")) {
+                        conversor = new ConversorTermico(valor, origem, destino);
 
                     } else {
-                        System.out.println("Tipo incorreto");
-                        continue;
+                        conversor = new ConversorEnergetico(valor, origem, destino);
                     }
 
-                    // 🔥 OPERADOR TERNÁRIO OBRIGATÓRIO AQUI
-                    Conversor conversor = (tipo == 1)
-                            ? new ConversorTermico(valor, origem, destino)
-                            : new ConversorEnergetico(valor, origem, destino);
-
                     conversor.calcularConversao();
-                    lista.add(conversor);
-
-                    System.out.println("Conversão realizada com sucesso.");
+                    listaConversoes.add(conversor);
+                    System.out.println("Conversão realizada: " + conversor);
                     break;
 
                 case 2:
-                    System.out.println("\n HISTÓRICO ");
-
-                    if (lista.isEmpty()) {
-                        System.out.println("Nenhuma conversão registrada.");
-                    } else {
-                        for (int i = 0; i < lista.size(); i++) {
-                            System.out.println(i + " - " + lista.get(i));
-                        }
+                    System.out.println("Histórico de Conversões:");
+                    for (int i = 0; i < listaConversoes.size(); i++) {
+                        System.out.println(i + " - " + listaConversoes.get(i));
                     }
                     break;
 
                 case 3:
-                    System.out.println("Digite o índice para deletar:");
+                    System.out.println("Digite o índice da conversão a ser alterada: ");
                     int index = s.nextInt();
+                    if (index >= 0 && index < listaConversoes.size()) {
+                        Conversor conversaoAlterada = listaConversoes.get(index);
+                        System.out.println("Digite o novo valor de entrada: ");
+                        double novoValor = s.nextDouble();
+                        conversaoAlterada.setValorEntrada(novoValor);
 
-                    if (index >= 0 && index < lista.size()) {
-                        lista.remove(index);
+                        conversaoAlterada.calcularConversao();
+                        System.out.println("Conversão alterada: " + conversaoAlterada);
+                    } else {
+                        System.out.println("Índice inválido.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Digite o índice da conversão a ser deletada: ");
+                    index = s.nextInt();
+                    if (index >= 0 && index < listaConversoes.size()) {
+                        listaConversoes.remove(index);
                         System.out.println("Conversão removida.");
                     } else {
-                        System.out.println("Índice incorreto.");
+                        System.out.println("Índice inválido.");
                     }
                     break;
 
                 case 0:
-                    System.out.println("Saindo.");
+                    System.out.println("Saindo");
                     break;
 
                 default:
-                    System.out.println("Opção incorreta.");
+                    System.out.println("Opção inválida.");
             }
 
         } while (opcao != 0);
