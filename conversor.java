@@ -1,13 +1,17 @@
 public class Conversor {
+
     private double valorEntrada;
     private double valorSaida;
     private String unidadeOrigem;
     private String unidadeDestino;
 
+    public Conversor() {
+    }
+
     public Conversor(double entrada, String origem, String destino) {
-        valorEntrada = entrada;
-        unidadeOrigem = origem;
-        unidadeDestino = destino;
+        this.valorEntrada = entrada;
+        this.unidadeOrigem = origem;
+        this.unidadeDestino = destino;
     }
 
     public double getValorEntrada() {
@@ -15,7 +19,7 @@ public class Conversor {
     }
 
     public void setValorEntrada(double entrada) {
-        valorEntrada = entrada;
+        this.valorEntrada = entrada;
     }
 
     public double getValorSaida() {
@@ -23,15 +27,15 @@ public class Conversor {
     }
 
     public void setValorSaida(double saida) {
-        valorSaida = saida;
+        this.valorSaida = saida;
     }
 
     public String getUnidadeOrigem() {
-    return unidadeOrigem;
+        return unidadeOrigem;
     }
 
     public void setUnidadeOrigem(String origem) {
-        unidadeOrigem = origem;
+        this.unidadeOrigem = origem;
     }
 
     public String getUnidadeDestino() {
@@ -39,12 +43,13 @@ public class Conversor {
     }
 
     public void setUnidadeDestino(String destino) {
-        unidadeDestino = destino;
+        this.unidadeDestino = destino;
     }
 
     public void calcularConversao() {
     }
 
+    @Override
     public String toString() {
         return "Entrada: " + valorEntrada + " " + unidadeOrigem +
                " | Saída: " + valorSaida + " " + unidadeDestino;

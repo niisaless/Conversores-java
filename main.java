@@ -27,24 +27,24 @@ public class Main {
                     System.out.println("Digite o valor de entrada: ");
                     double valor = s.nextDouble();
 
-                    Conversor conversor;
+                    Conversor Conversor;
 
                     if (origem.equals("Celsius")) {
-                        conversor = new ConversorTermico(valor, origem, destino);
+                        Conversor = new ConversorTermico(valor, origem, destino);
 
                     } else if (origem.equals("Fahrenheit")) {
-                        conversor = new ConversorTermico(valor, origem, destino);
+                        Conversor = new ConversorTermico(valor, origem, destino);
 
                     } else if (origem.equals("Kelvin")) {
-                        conversor = new ConversorTermico(valor, origem, destino);
+                        Conversor = new ConversorTermico(valor, origem, destino);
 
                     } else {
-                        conversor = new ConversorEnergetico(valor, origem, destino);
+                        Conversor = new ConversorEnergetico(valor, origem, destino);
                     }
 
-                    conversor.calcularConversao();
-                    listaConversoes.add(conversor);
-                    System.out.println("Conversão realizada: " + conversor);
+                    Conversor.calcularConversao();
+                    listaConversoes.add(Conversor);
+                    System.out.println("Conversão realizada: " + Conversor);
                     break;
 
                 case 2:

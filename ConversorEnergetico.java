@@ -2,6 +2,8 @@ public class ConversorEnergetico extends Conversor {
 
     public ConversorEnergetico(double entrada, String origem, String destino) {
         setValorEntrada(entrada);
+        setUnidadeOrigem(origem);
+        setUnidadeDestino(destino);
     }
 
     public void calcularConversao() {
